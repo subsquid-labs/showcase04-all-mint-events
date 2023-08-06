@@ -37,14 +37,14 @@ processor.run(new TypeormDatabase({supportHotBlocks: false}), async (ctx) => {
                         destination = to.toLowerCase()
                     }
                     else if (destination !== to.toLowerCase()) {
-                        ctx.log.error(`ERROR: minting destination from topics and from data disagree for a minting Transfer emitted by txn ${log.transaction.hash}`)
+                        ctx.log.error(`Minting destination from topics and from data disagree for a minting Transfer emitted by txn ${log.transaction.hash}, sourcing from topics`)
                     }
                 }
                 catch (error) {
                     ctx.log.info(`Failed to decode a minting Transfer emitted by txn ${log.transaction.hash}: amount will be missing`)
                 }
                 if (!destination) {
-                    ctx.log.error(`cannot determine destination for a minting Transfer emitted by txn ${log.transaction.hash}`)
+                    ctx.log.info(`Cannot determine destination for a minting Transfer emitted by txn ${log.transaction.hash}`)
                 }
 
                 mints.push(new Mint({

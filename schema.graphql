@@ -12,6 +12,6 @@ type Mint @entity {
   id: ID!
   txn: TransactionThatCausedMint!
   contract: String! @index
-  destination: String! @index
+  destination: String @index
   amount: BigInt
 }

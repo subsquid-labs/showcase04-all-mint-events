@@ -1,8 +1,8 @@
-module.exports = class Data1691322616648 {
-    name = 'Data1691322616648'
+module.exports = class Data1691324495884 {
+    name = 'Data1691324495884'
 
     async up(db) {
-        await db.query(`CREATE TABLE "mint" ("id" character varying NOT NULL, "contract" text NOT NULL, "destination" text NOT NULL, "amount" numeric, "txn_id" character varying, CONSTRAINT "PK_fcaea791104aa41aa11dac29cb2" PRIMARY KEY ("id"))`)
+        await db.query(`CREATE TABLE "mint" ("id" character varying NOT NULL, "contract" text NOT NULL, "destination" text, "amount" numeric, "txn_id" character varying, CONSTRAINT "PK_fcaea791104aa41aa11dac29cb2" PRIMARY KEY ("id"))`)
         await db.query(`CREATE INDEX "IDX_afd7a6db0da06f1a2ac598a8ec" ON "mint" ("txn_id") `)
         await db.query(`CREATE INDEX "IDX_a9bbf74e9ec58ac6753ce26e2f" ON "mint" ("contract") `)
         await db.query(`CREATE INDEX "IDX_571fdd685cc2aa9bd82b68b453" ON "mint" ("destination") `)
