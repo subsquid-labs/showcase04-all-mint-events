@@ -1,0 +1,17 @@
+type TransactionThatCausedMint @entity {
+  id: ID!
+  block: Int! @index
+  hash: String! @index
+  from: String! @index
+  to: String! @index
+  gasUsed: BigInt!
+  mints: [Mint!] @derivedFrom(field: "txn")
+}
+
+type Mint @entity {
+  id: ID!
+  txn: TransactionThatCausedMint!
+  contract: String! @index
+  destination: String! @index
+  amount: BigInt!
+}
