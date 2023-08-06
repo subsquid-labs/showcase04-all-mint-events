@@ -25,16 +25,33 @@ processor.run(new TypeormDatabase({supportHotBlocks: false}), async (ctx) => {
                         hash: log.transaction.hash,
                         from: log.transaction.from,
                         to: log.transaction.to,
-                        gasSpent: log.transaction.gasUsed
+                        gasUsed: log.transaction.gasUsed
                     }))
                 }
 
-                let {from, to, value} = erc20.events.Transfer.decode(log)
+                let value
+                let destination = log.topics[2] && '0x' + log.topics[2].slice(26)
+                try {
+                    let {from, to, value} = erc20.events.Transfer.decode(log)
+                    if (!destination) {
+                        destination = to.toLowerCase()
+                    }
+                    else if (destination !== to.toLowerCase()) {
+                        ctx.log.error(`ERROR: minting destination from topics and from data disagree for a minting Transfer emitted by txn ${log.transaction.hash}`)
+                    }
+                }
+                catch (error) {
+                    ctx.log.info(`Failed to decode a minting Transfer emitted by txn ${log.transaction.hash}: amount will be missing`)
+                }
+                if (!destination) {
+                    ctx.log.error(`cannot determine destination for a minting Transfer emitted by txn ${log.transaction.hash}`)
+                }
+
                 mints.push(new Mint({
                     id: log.id,
                     txn: transactions.get(log.transaction.hash),
                     contract: log.address,
-                    destination: to,
+                    destination,
                     amount: value
                 }))
             }

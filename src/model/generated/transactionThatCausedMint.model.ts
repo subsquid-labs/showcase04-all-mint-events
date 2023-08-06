@@ -24,11 +24,11 @@ export class TransactionThatCausedMint {
     from!: string
 
     @Index_()
-    @Column_("text", {nullable: false})
-    to!: string
+    @Column_("text", {nullable: true})
+    to!: string | undefined | null
 
     @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
-    gasSpent!: bigint
+    gasUsed!: bigint
 
     @OneToMany_(() => Mint, e => e.txn)
     mints!: Mint[]

@@ -23,6 +23,6 @@ export class Mint {
     @Column_("text", {nullable: false})
     destination!: string
 
-    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
-    amount!: bigint
+    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: true})
+    amount!: bigint | undefined | null
 }

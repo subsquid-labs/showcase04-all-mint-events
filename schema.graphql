@@ -3,7 +3,7 @@ type TransactionThatCausedMint @entity {
   block: Int! @index
   hash: String! @index
   from: String! @index
-  to: String! @index
+  to: String @index
   gasUsed: BigInt!
   mints: [Mint!] @derivedFrom(field: "txn")
 }
@@ -13,5 +13,5 @@ type Mint @entity {
   txn: TransactionThatCausedMint!
   contract: String! @index
   destination: String! @index
-  amount: BigInt!
+  amount: BigInt
 }
