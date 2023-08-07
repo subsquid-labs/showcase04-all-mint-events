@@ -7,16 +7,14 @@ import {
     Log as _Log,
     Transaction as _Transaction,
 } from '@subsquid/evm-processor'
-import * as erc20 from './abi/erc20'
+import * as usdcAbi from './abi/usdc'
 
 export const processor = new EvmBatchProcessor()
     .setDataSource({
         archive: lookupArchive('eth-mainnet'),
     })
-    // ERC20 token mints emit Transfer events originating from 0x0
     .addLog({
-        topic0: [erc20.events.Transfer.topic],
-        topic1: ['0x0000000000000000000000000000000000000000000000000000000000000000'],
+        topic0: [usdcAbi.events.Mint.topic],
         transaction: true,
     })
     .setFields({

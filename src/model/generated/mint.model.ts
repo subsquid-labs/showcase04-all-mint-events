@@ -20,9 +20,13 @@ export class Mint {
     contract!: string
 
     @Index_()
-    @Column_("text", {nullable: true})
-    destination!: string | undefined | null
+    @Column_("text", {nullable: false})
+    minter!: string
 
-    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: true})
-    amount!: bigint | undefined | null
+    @Index_()
+    @Column_("text", {nullable: false})
+    to!: string
+
+    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
+    amount!: bigint
 }
