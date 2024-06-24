@@ -1,4 +1,3 @@
-import {lookupArchive} from '@subsquid/archive-registry'
 import {
     BlockHeader,
     DataHandlerContext,
@@ -11,7 +10,7 @@ import * as usdcAbi from './abi/usdc'
 
 export const processor = new EvmBatchProcessor()
     .setDataSource({
-        archive: lookupArchive('eth-mainnet'),
+        archive: 'https://v2.archive.subsquid.io/network/ethereum-mainnet',
     })
     .addLog({
         topic0: [usdcAbi.events.Mint.topic],
