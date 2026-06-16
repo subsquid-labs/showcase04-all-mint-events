@@ -2,7 +2,7 @@
 
 This squid captures all `Mint(address,address,uint256)` events on Ethereum and scrapes the transactions that caused mints, noting the amount of gas spent on each of them. One contract that emits these events is the [USDC token contract](https://etherscan.io/address/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48); its ABI is used to make a Typescript wrapper that supplies a topic0 constant and an event data decoder.
 
-See more examples of requesting data with squids on the [showcase page](https://docs.subsquid.io/evm-indexing/configuration/showcase) of Subsquid documentation.
+See more examples of requesting data with squids on the [showcase page](https://docs.sqd.dev/en/sdk) of Subsquid documentation.
 
 Dependencies: Node.js, Docker.
 
