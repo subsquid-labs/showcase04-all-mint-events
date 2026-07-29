@@ -17,7 +17,7 @@ sqd init showcase04 -t https://github.com/subsquid-labs/showcase04-all-mint-even
 cd showcase04
 
 # 2. Install dependencies
-npm ci
+npm i
 
 # 3. Start a Postgres database container and detach
 sqd up
